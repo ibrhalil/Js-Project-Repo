@@ -1,0 +1,52 @@
+* {
+    box-sizing: border-box !important;
+}
+
+#farkMaliyet {
+    width: 20%;
+    left: 78%;
+    top: 88px;
+    opacity: .6;
+}
+
+#farkMaliyet:hover {
+    opacity: 1 !important;
+}
+
+header .row div img {
+    background: #ffffff;
+    width: 130px;
+}
+
+footer {
+    bottom: 0;
+}
+
+/*Bootstrap manipülasyon*/
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: #ffffff !important;
+    background-color: #6c757d !important;
+}
+
+a {
+    color: #168799;
+}
+
+a:hover {
+    color: #6c757d;
+}
+
+/*Fark Maliyet Tablet Boyunda Görünümü*/
+@media only screen and (max-width : 990px) {
+    #farkMaliyet {
+        order: 2;
+        opacity: 1;
+        width: 100%;
+        position: static !important;
+    }
+
+    .nav {
+        display: block !important;
+    }
+}

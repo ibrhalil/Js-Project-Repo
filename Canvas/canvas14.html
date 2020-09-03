@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="tuval" width="800" height="500"></canvas>
+    <script>
+        var canvas = document.getElementById("tuval");
+        var context = canvas.getContext("2d");
+
+        var eksenX=10;
+        var eksenY=30;  //metin boyutu + 10 boşluk
+
+        context.font="20pt Arial";
+        //context.textAlign="center";
+        context.fillStyle="#099";
+        context.fillText("Metin",eksenX,eksenY);//canvas 'a metin yazdırma
+    </script>
+</body>
+</html>

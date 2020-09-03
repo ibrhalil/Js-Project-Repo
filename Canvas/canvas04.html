@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas Kelime Çizme</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="tuval" width="2000" height="800"></canvas>
+    <script>
+        var canvas = document.getElementById("tuval");
+        var contxt = canvas.getContext("2d");
+        contxt.lineWidth = 30;
+        contxt.lineCap = "round";
+        contxt.strokeStyle="#74b9ff";
+
+        /*M*/
+        contxt.beginPath();
+        contxt.moveTo(100, 50);
+        contxt.lineTo(100, 250);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(100, 50);
+        contxt.lineTo(200, 150);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(200, 150);
+        contxt.lineTo(300, 50);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(300, 50);
+        contxt.lineTo(300, 250);
+        contxt.stroke();
+        /*---*/
+
+        /*y*/
+        contxt.beginPath();
+        contxt.moveTo(350, 50);
+        contxt.lineTo(400, 150);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(450, 50);
+        contxt.lineTo(350, 250);
+        contxt.stroke();
+        /*---*/
+
+        contxt.lineWidth = 25;
+        contxt.strokeStyle="#d63031";
+
+        /*C*/
+        contxt.beginPath();
+        contxt.moveTo(350, 300);
+        contxt.lineTo(450, 300);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(350, 300);
+        contxt.lineTo(350, 500);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(350, 500);
+        contxt.lineTo(450, 500);
+        contxt.stroke();
+        /*---*/
+
+        /*o*/
+        contxt.beginPath();
+        contxt.moveTo(500, 300);
+        contxt.lineTo(600, 300);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(500, 300);
+        contxt.lineTo(500, 500);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(500, 500);
+        contxt.lineTo(600, 500);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(600, 300);
+        contxt.lineTo(600, 500);
+        contxt.stroke();
+        /*---*/
+
+        /*d*/
+        contxt.beginPath();
+        contxt.moveTo(650, 300);
+        contxt.lineTo(650, 500);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(650, 300);
+        contxt.lineTo(750, 350);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(650, 500);
+        contxt.lineTo(750, 450);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(750, 350);
+        contxt.lineTo(750, 450);
+        contxt.stroke();
+        /*---*/
+
+        /*e*/
+        contxt.beginPath();
+        contxt.moveTo(800, 300);
+        contxt.lineTo(800, 500);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(800, 300);
+        contxt.lineTo(900, 300);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(800, 400);
+        contxt.lineTo(900, 400);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(800, 500);
+        contxt.lineTo(900, 500);
+        contxt.stroke();
+        /*---*/
+
+        contxt.lineWidth = 20;
+        contxt.strokeStyle="#fab1a0";
+
+        /*D*/
+        contxt.beginPath();
+        contxt.moveTo(350, 550);
+        contxt.lineTo(350, 750);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(350, 550);
+        contxt.lineTo(450, 600);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(350, 750);
+        contxt.lineTo(450, 700);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(450, 600);
+        contxt.lineTo(450, 700);
+        contxt.stroke();
+        /*---*/
+
+        /*a*/
+        contxt.beginPath();
+        contxt.moveTo(580, 550);
+        contxt.lineTo(500, 750);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(580, 550);
+        contxt.lineTo(660, 750);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(500, 650);
+        contxt.lineTo(660, 650);
+        contxt.stroke();
+        /*---*/
+
+        /*t*/
+        contxt.beginPath();
+        contxt.moveTo(660, 550);
+        contxt.lineTo(860, 550);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(760, 550);
+        contxt.lineTo(760, 750);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(500, 650);
+        contxt.lineTo(660, 650);
+        contxt.stroke();
+        /*---*/
+
+        /*a*/
+        contxt.beginPath();
+        contxt.moveTo(940, 550);
+        contxt.lineTo(860, 750);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(940, 550);
+        contxt.lineTo(1020, 750);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(860, 650);
+        contxt.lineTo(1020, 650);
+        contxt.stroke();
+        /*---*/
+
+        /*b*/
+        contxt.beginPath();
+        contxt.moveTo(1070, 550);
+        contxt.lineTo(1070, 750);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(1070, 550);
+        contxt.lineTo(1140, 550);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(1140, 550);
+        contxt.lineTo(1180, 600);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(1140, 650);
+        contxt.lineTo(1180, 700);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(1140, 650);
+        contxt.lineTo(1180, 600);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(1070, 650);
+        contxt.lineTo(1140, 650);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(1140, 750);
+        contxt.lineTo(1180, 700);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(1070, 750);
+        contxt.lineTo(1140, 750);
+        contxt.stroke();
+        /*---*/
+
+        /*a*/
+        contxt.beginPath();
+        contxt.moveTo(1290, 550);
+        contxt.lineTo(1210, 750);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(1290, 550);
+        contxt.lineTo(1370, 750);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(1210, 650);
+        contxt.lineTo(1370, 650);
+        contxt.stroke();
+        /*---*/
+
+        /*s*/
+        contxt.beginPath();
+        contxt.moveTo(1420, 550);
+        contxt.lineTo(1580, 550);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(1420, 650);
+        contxt.lineTo(1580, 650);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(1420, 750);
+        contxt.lineTo(1580, 750);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(1420, 550);
+        contxt.lineTo(1420, 650);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(1580, 650);
+        contxt.lineTo(1580, 750);
+        contxt.stroke();
+        /*---*/
+
+        /*e*/
+        contxt.beginPath();
+        contxt.moveTo(1640, 550);
+        contxt.lineTo(1800, 550);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(1640, 650);
+        contxt.lineTo(1800, 650);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(1640, 750);
+        contxt.lineTo(1800, 750);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(1640, 550);
+        contxt.lineTo(1640, 650);
+        contxt.stroke();
+        /*---*/
+        contxt.beginPath();
+        contxt.moveTo(1640, 650);
+        contxt.lineTo(1640, 750);
+        contxt.stroke();
+        /*---*/
+    </script>
+</body>
+
+</html>

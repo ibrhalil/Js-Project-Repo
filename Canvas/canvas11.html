@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gradient</title>
+</head>
+<body>
+    <canvas id="tuval" width="1200" height="700"></canvas>
+    <script>
+        var canvas = document.getElementById("tuval");
+        con = canvas.getContext("2d");
+
+        var grl = con.createLinearGradient(110,0,200,0);    //renk geçişleri yapabilememizi sağlayan metot 
+        //(x1,y1,x2,y2)
+        grl.addColorStop(0.2,"#8df"); /*  ilk deger 0 - 1 arası deger alır ikinci renkdir  */
+        grl.addColorStop(0.5,"#f3f");   /*   renk geçişleri için renk ekleriz   */
+        grl.addColorStop(0.8,"#fd2");
+
+        con.rect(100,100,200,100);  //bir dikdörtgen çizeriz
+        con.fillStyle=grl;//iç dolgu rengini oluşturduğumuz renkle ile belirleriz
+        con.fill();
+
+    </script>
+</body>
+</html>

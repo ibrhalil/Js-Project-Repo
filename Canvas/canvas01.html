@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas Örnek 1</title>
+    <style>
+        canvas{
+            background-color:darksalmon;/*   canvas ekranda gözükmesi için arkaplan rengi belirtiriz   */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <canvas id="tuval" width="600" height="400" ></canvas><!--   html için canvas taglarını açıyoruz   -->
+    </div>
+    <script>
+        var canvas = document.getElementById("tuval");//canvas ile etkileşimi kolaylaştırmak için değişken içine tanımlarız
+        var contxt = canvas.getContext("2d");//canvası 2d çizim yapacağımızı belirtiyoruz.
+    </script>
+</body>
+</html>

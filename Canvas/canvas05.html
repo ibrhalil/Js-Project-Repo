@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <span>Cizgi Aralığı:</span>
+                </td>
+                <td>
+                    <input type="range" name="aralik" id="aralik" onchange="cizz()" max="50" value="5" min="1"
+                        style="width:300px;">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Çizgi Kalınlığı:</span>
+                </td>
+                <td>
+                    <input type="range" name="kalinlik" id="kalinlik" onchange="cizz()" max="10" value="1" min="1"
+                        style="width:300px;">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Boyut:</span>
+                </td>
+                <td>
+                    <input type="range" name="boyutt" id="boyutt" onchange="cizz()" max="500" value="100" min="50"
+                        style="width:300px;">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <br>
+    <canvas id="tuval"></canvas>
+    <script>
+        var canvas = document.getElementById("tuval");
+        var ctxt = canvas.getContext("2d");
+        var aralk = document.getElementById("aralik");
+        var boytt = document.getElementById("boyutt");
+        var kalin = document.getElementById("kalinlik");
+        var renkler = new Array("#55efc4", "#81ecec", "#74b9ff", "#a29bfe", "#6c5ce7", "#ffeaa7", "#fab1a0", "#fd79a8",
+            "#ff7675", "#d63031", "#e84393", "#574b90");
+
+        function cizz() {
+            var sonNoktaX = 0;
+            var sonNoktaY = 0;
+            var baslamaNoktasi = parseInt(boytt.value);
+            var atrisMiktar = parseInt(aralk.value);
+            var boole = false;
+            canvas.width = baslamaNoktasi * 2
+            canvas.height = baslamaNoktasi * 2;
+            ctxt.lineCap = "round";
+            aralk.max=boytt
+            ctxt.clearRect(0, 0, canvas.width, canvas.height);
+            while (true) {
+                ctxt.beginPath();
+                ctxt.moveTo(baslamaNoktasi, baslamaNoktasi);
+                ctxt.lineTo(sonNoktaX, sonNoktaY);
+                ctxt.strokeStyle = renkler[Math.floor(Math.random() * (renkler.length))];
+                ctxt.lineWidth=parseInt(kalin.value);
+                ctxt.stroke();
+                console.log("X:" + sonNoktaX + " Y:" + sonNoktaY);
+                if (sonNoktaY >= baslamaNoktasi * 2 || boole) {
+                    if (sonNoktaX <= 0) {
+                        boole = true;
+                        sonNoktaY -= atrisMiktar;
+                        if (sonNoktaY <= 0) {
+                            break;
+                        }
+                    } else {
+                        sonNoktaX -= atrisMiktar;
+                    }
+                } else {
+                    if (sonNoktaX >= baslamaNoktasi * 2) {
+                        sonNoktaY += atrisMiktar;
+                    } else {
+                        sonNoktaX += atrisMiktar;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

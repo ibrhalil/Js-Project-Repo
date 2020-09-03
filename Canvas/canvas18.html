@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="range" name="dAci" id="dAci" max="60" min="1" onchange="f()" value="15" style="width:500px;"><br>
+    <canvas id="tuval" width="600" height="600" style="border: 1px solid blue;"></canvas>
+    <script>
+        var c = document.getElementById("tuval");
+        var d = document.getElementById("dAci");
+        var ct = c.getContext("2d");
+        var kere = false;   
+
+        function f() {
+            if (kere) {
+                ct.translate(-c.width / 2, -c.height / 2);
+            }
+            kere = true;    //basta ortalama degeri yapılmadıgı için bir kez yapmasını sağlamalıyız
+
+            //her yeni değerde canvası yeniler
+            ct.clearRect(0, 0, c.width, c.height);
+
+            //ranger degerini istenilen açı değeri olarak verdik 
+            //fazladan dönmemesi için 360 'ı verilen açıya böldük bu sebeple döngümüz fazla tur atmayacak
+            var donmeAcisi = d.value;
+            var donme = 360 / donmeAcisi;
+
+            //açı değeri canvasa göre veridiği için bizde canvası başlama noktalarını orta merkeze aldık
+            ct.translate(c.width / 2, c.height / 2);    
+
+            //dikdörtgeni çizecek ve açıyı ayarlacak
+            for (let i = 0; i + 1 <= donme; i += 1) {
+
+                ct.rotate(donmeAcisi * Math.PI / 180);  
+
+                ct.beginPath();
+                ct.rect(100, 10, 100, 100);
+                ct.strokeStyle = "red";
+                ct.stroke();
+            }
+        }
+    </script>
+</body>
+
+</html>

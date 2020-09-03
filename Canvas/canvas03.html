@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Çizgi Sitil</title>
+</head>
+<body>
+    <canvas id="tuval" width="800" height="400"></canvas>
+    <script>
+        var canvas = document.getElementById("tuval");
+        var context = canvas.getContext("2d");
+
+        context.strokeStyle="#f6269c"; //çizginin renginin belirler
+        context.lineWidth = 5; //çizginin kalınlığını ayarlar
+        context.lineCap = "round"; //çizginin tipini belirler
+    /*  context.lineCap = "square";   */
+
+        context.beginPath();
+        context.moveTo(100,100);
+        context.lineTo(500,200);
+        context.stroke();
+
+
+    </script>
+</body>
+</html>

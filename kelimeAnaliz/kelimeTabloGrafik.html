@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Kelime Analizi</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:500&display=swap" rel="stylesheet">
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <style>
+    * {
+      font-family: 'Roboto', sans-serif;
+      box-sizing: border-box;
+      font-size: 21px;
+      outline-width: 0;
+    }
+
+    #piechart {
+      min-height: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <header></header>
+  <main>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="yazi" class="text-info">Kelimelerine Ayrılacak Metni Giriniz : </label>
+            <textarea class="form-control text-success" name="yazi" id="yazi" rows="5"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col text-right">
+          <button type="button" class="btn btn-primary" id="btn">Hesapla</button>
+        </div>
+      </div>
+      <div class="row d-none mt-3" id="divTablo">
+        <div class="col">
+          <table class="table table-sm table-hover table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th>Sıra</th>
+                <th>Kelime</th>
+                <th>Adet</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div id="piechart"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  <script>
+    var context;
+    var uzunluk;
+    var diziK = [];
+    var diziS = [];
+    $(function () {
+      $("#btn").click(function () {
+        $("#divTablo").removeClass("d-none");
+        context = $("#yazi").val();
+        $("tbody tr").remove();
+        $.hesap(context);
+      });
+      $.hesap = function (yazi) {
+        yazi = yazi.toLowerCase();
+        uzunluk = yazi.length;
+        var kelime = "";
+        diziK.length = 0;
+        diziS.length = 0;
+        for (let i = 0; i < uzunluk; i++) {
+          if (yazi.charCodeAt(i) != 32 && yazi.charCodeAt(i) > 32 && yazi.charCodeAt(i) != 44 && yazi.charCodeAt(
+              i) != 46 && yazi.charCodeAt(i) != 59) {
+            kelime += yazi.charAt(i);
+          } else if (kelime != "") {
+            if (diziK.indexOf(kelime) == -1) {
+              diziK.push(kelime);
+              diziS.push(1);
+            } else {
+              diziS[diziK.indexOf(kelime)] += 1;
+            }
+            kelime = "";
+          }
+        }
+        if (kelime != "" && kelime != " ") {
+          if (diziK.indexOf(kelime) == -1) {
+            diziK.push(kelime);
+            diziS.push(1);
+          } else {
+            diziS[diziK.indexOf(kelime)] += 1;
+          }
+        }
+        $.yazdir();
+        $.pastala();
+      }
+
+      $.yazdir = function () {
+        var topKelime = 0;
+        for (let j = 0; j < diziK.length; j++) {
+          topKelime += diziS[j];
+          $("tbody").append(
+            "<tr>" +
+            "<td scope='row'>" + (j + 1) + "</td>" +
+            "<td>" + (diziK[j]) + "</td>" +
+            "<td>" + (diziS[j]) + "</td>" +
+            "</tr>"
+          );
+        }
+        $("tbody").append(
+          "<tr class='bg-secondary text-light'>" +
+          "<td scope='row' colspan='2'>Toplam Kelime Sayısı</td>" +
+          "<td>" + topKelime + "</td>" +
+          "</tr>"
+        );
+        
+      }
+      $.sirala = function () {
+
+      }
+      $.pastala = function () {
+        google.charts.load('current', {
+          'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+            ['Kelime', 'Adet'],
+            [diziK[0], diziS[0]]
+          ]);
+          for (let k = 1; k < diziK.length; k++) {
+            var klm = diziK[k];
+            var adt = diziS[k];
+            data.addRow([klm, adt]);
+          }
+          var options = {
+            title: 'Kelimelerin Dağılım Grafiği',
+            //height: diziK.length*41,
+            legend: {
+              position: 'none'
+            }
+          };
+          $("#piechart").css("height", diziK.length*41);
+          var chart = new google.visualization.BarChart(document.getElementById('piechart'));
+          chart.draw(data, options);
+        }
+      }
+      $("th").click(function () {
+        alert($(this).index());
+      });
+      $("tbody tr").click(function () {
+        alert($(this).index());
+      });
+    });
+  </script>
+</body>
+
+</html>

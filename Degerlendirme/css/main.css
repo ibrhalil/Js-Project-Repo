@@ -1,0 +1,144 @@
+* {
+    box-sizing: border-box !important;
+
+}
+
+#farkMaliyet {
+    width: 20%;
+    left: 78%;
+    top: 88px;
+    opacity: .6;
+}
+
+#farkMaliyet:hover {
+    opacity: 1 !important;
+}
+
+header .row div img {
+    background: #ffffff;
+    width: 130px;
+}
+
+main {
+    height: 100%;
+    min-height: 800px;
+}
+
+.col-lg-12 table {
+    min-width: 750px;
+
+}
+
+.col-lg-12 {
+    -webkit-scrollbar-width: none;
+    scrollbar-width: none;
+    overflow-x: scroll;
+}
+
+
+
+footer {
+    bottom: 0;
+    position: relative !important;
+
+}
+
+/*Bootstrap manipülasyon*/
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: #ffffff !important;
+    background-color: #6c757d !important;
+}
+
+a {
+    color: #168799;
+}
+
+a:hover {
+    color: #6c757d;
+}
+
+/*Fark Maliyet Tablet Boyunda Görünümü*/
+@media only screen and (max-width : 990px) {
+    #farkMaliyet {
+        order: 2;
+        opacity: 1;
+        width: 100%;
+        position: static !important;
+    }
+
+    .nav {
+        display: block !important;
+    }
+
+    footer {
+        position: static !important;
+    }
+}
+
+
+
+
+
+/*Checked Box Style*/
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 21px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 13px;
+    width: 13px;
+    left: 5px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(17px);
+    -ms-transform: translateX(17px);
+    transform: translateX(17px);
+}
+
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/*Checked Box Style*/

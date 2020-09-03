@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dikdörtgen Çizimi</title>
+</head>
+<body>
+    <canvas id="tuval" width="900" height="600"></canvas>
+    <script>
+        var canvas = document.getElementById("tuval");
+        var con = canvas.getContext("2d");
+        
+        con.beginPath();
+        //      (eksenX,eksenY,genislik,yukseklik)
+        con.rect(100,50,250,150);//rectangle = dikdörtgen demek,koordinat ve yükseklik veriyoruz
+        con.fillStyle="gray";   //iç dolgu rengini belirledik
+        con.fill();     //iç dolgu rengini bastık (dikdörtgenin görünmesi için)
+
+        //bir başka dikdörtgen
+
+        con.beginPath();
+        con.rect(100,250,250,200);
+        con.strokeStyle="#9cf";     //sadece kenar çizgisi vererek dikdörtgen çizdik
+        con.lineWidth = 3;  //kenar çizgisinin kalınlıgı
+        con.stroke();   //kenar çizgisini bastık
+
+        con.beginPath();
+        con.rect(400,50,250,400);
+        con.lineWidth = 7;
+        con.strokeStyle="black";
+        con.fillStyle="red";
+        con.stroke();
+        con.fill();
+
+    </script>
+</body>
+</html>

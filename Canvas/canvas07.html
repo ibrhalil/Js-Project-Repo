@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Yay Çizme</title>
+</head>
+<body>
+    <canvas id="tuval" width="1000" height="600"></canvas>
+    <script>
+        var canvas = document.getElementById("tuval");
+        var ctx = canvas.getContext("2d");
+
+        var eksenX=300;     //x koordinatı
+        var eksenY=100;     //y koordinatı
+        var radius=50;      //oluşaçak açının yarı çapı (merkezinden olan uzaklık)
+        var baslamaAcisi = 5;   //cizginin başlama noktası
+        var bitisAcisi = 1;     //çizginin bitiş noktası
+        var saatYonuTersi = false;      //açı yönü saat yönü tersi 
+
+        ctx.beginPath();
+        ctx.arc(eksenX,eksenY,radius,baslamaAcisi,bitisAcisi,saatYonuTersi);    //yay çizmek için verileri giriyoruz
+        ctx.stroke();       //yay gözükmesi için kenar çizgisi veriyoruz
+    </script>
+</body>
+</html>

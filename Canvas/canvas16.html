@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="tuval" width="700" height="900"></canvas>
+    <script>
+        var canvas = document.getElementById("tuval");
+        var contxt = canvas.getContext("2d");
+
+        contxt.beginPath();
+        contxt.rect(10, 10, 100, 100);
+        contxt.fillStyle = "#f99cdf";
+        contxt.fill();
+
+        contxt.scale(1, 1); //tuvalimizin en ve boy ölçülerini (verilen oranda tuvali yakınlaştırıyor )
+        //  default degeri = scale(1,1);
+
+        contxt.beginPath();
+        contxt.rect(10, 120, 100, 100);
+        contxt.fillStyle = "#f99cdf";
+        contxt.fill();
+
+        contxt.scale(2,2); /*x ve y eksenine göre yaklaştırdık
+        bundan sonra yapılan usteki nesnenin aynısı ekranda daha büyük olarak gözükecek*/
+
+        contxt.beginPath();
+        contxt.rect(100, 10, 100, 100);
+        contxt.fillStyle = "#fcd9df";
+        contxt.fill();
+    </script>
+</body>
+
+</html>

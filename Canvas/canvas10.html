@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Resim Ekleme</title>
+</head>
+
+<body>
+    <canvas id="tuval"></canvas>
+    <script>
+        var canvas = document.getElementById("tuval");
+        var con = canvas.getContext("2d");
+
+        var res = new Image(); //resmi saklayacağımız bir değişken oluşturduk
+
+        var eksenX = 150; //resim için x ekseninde yer belirledik
+        var eksenY = 50; //resim için y ekseninde yer belirledik
+
+        res.src = "http://www.goptasanat.com/userfiles/page/324789aed963c3c91aaf81.jpg"; //resmin yolunu belirledik  
+
+        /*
+            resmin boyutu yüzünden canvası aşmaması için 
+            canvasın boyutunu resmin boyutu ve eksen üzerindeki
+            degerleri ile yeniden boyutlandırdık
+        */
+        canvas.width = res.width + eksenX;
+        canvas.height = res.height + eksenY;
+
+        con.drawImage(res, eksenX, eksenY, res.width, res.height);  //resmimizi canvas üzerine basıyoruz.
+    </script>
+</body>
+
+</html>

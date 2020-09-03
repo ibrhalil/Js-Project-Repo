@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="tr">
+
+<head>
+    <title>Duksa - Keşif Değerlendirme</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="keywords" content="duksa,elektrik,müdendislik,değerlendirme,makine,inşaat" />
+    <meta name="description" content="Duksa Keşif Değerlendirme Aracı." />
+    <meta name="author" content="i.halil aydın">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap and FontAwesome CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <header class="bg-dark mb-2">
+        <div class="row mr-0">
+            <div class="col p-3">
+                <h1 class="bg-dark text-light h3 pl-3 d-inline-block">Keşif Değerlendirme</h1>
+            </div>
+            <div class="col text-right p-3 pr-5">
+                <a href="http://duksa.com.tr"><img src="img/DuksaLogo.png" alt=" Logo"></a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="alert position-fixed" style="z-index:400;" role="alert" id="bildiri1"></div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 order-lg-first order-last" style="z-index: 1;">
+                    <div class="kur w-100 mt-1" id="kurGoster">
+                        <table class="table table-sm table-bordered ">
+                            <thead>
+                                <tr>
+                                    <th colspan="3" class="table-secondary pl-3"><a
+                                            href="https://www.tcmb.gov.tr/kurlar/today.xml" target="_blank">Güncel Dolar
+                                            Kuru</a></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Dolar</td>
+                                    <td><input type="text" class="form-control" name="dolarKur" id="dolarKur"
+                                            value="5.8" maxlength="6" title="Virgül kullanmayınız!"
+                                            data-toggle="tooltip" data-placement="top"></td>
+                                </tr>
+                                <tr>
+                                    <td>Euro</td>
+                                    <td><input type="text" class="form-control" name="euroKur" id="euroKur"
+                                            maxlength="6" title="Virgül kullanmayınız!" data-toggle="tooltip"
+                                            data-placement="top"></td>
+                                </tr>
+                                <tr>
+                                    <td>Sterlin</td>
+                                    <td><input type="text" class="form-control" name="SterlinKur" id="SterlinKur"
+                                            maxlength="6" title="Virgül kullanmayınız!" data-toggle="tooltip"
+                                            data-placement="top"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!--
+                    <div class="col-12 p-0 mt-2">
+                        <button class="btn btn-secondary btn-sm" id="kurG">Kur Bilgisi</button>
+                    </div>
+                    -->
+                    <div class="col-12 p-0 mt-3 mb-3">
+                        <button class="btn btn-info btn-sm" id="notEkle">Not Ekle</button>
+                    </div>
+                    <!--kısım 5-->
+                    <div class="h-auto w-100 sticky-top" id="notlarDiv">
+
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <!--Kısım 1-->
+                    <h2 class="h4 mb-3 mt-2">Yeni Proje</h2>
+                    <div class="gizle01">
+                        <div class="row" id="yenP">
+                            <div class="col-lg-7">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Proje Adın :</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="projeAd" id="projeAd" maxlength="100">
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">İşveren Firma :</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="isVerenFirma" id="isVerenFirma"
+                                        maxlength="30">
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">İnşaat Alanı :</span>
+                                    </div>
+                                    <input type="number" class="form-control" name="isAlani" id="isAlani"
+                                        placeholder="m²" min="0" pattern="[0-9]+" max="100000000">
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">İş Başlama Tarihi :</span>
+                                    </div>
+                                    <input type="date" class="form-control" name="isBaslamaTarih" id="isBaslamaTarih">
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">İş Süresi : </span>
+                                    </div>
+                                    <input type="number" class="form-control" name="isSure" id="isSure" min="1"
+                                        max="36500" value="0" pattern="[0-9]+">
+                                </div>
+                            </div>
+                            <!--
+                            <div class="col-lg-7">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">İş Bedeli : </span>
+                                    </div>
+                                    <input type="number" class="form-control" name="isBedel" id="isBedel" min="0"
+                                        pattern="[0-9]+" placeholder="&#8378;">
+                                </div>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <button class="btn btn-primary btn-success" name="yProje" id="yProje">Yeni Proje
+                                Oluştur</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <!--Kısım 2-->
+                    <div id="tablolar" class="tab-content">
+                        <ul class="nav nav-pills mb-3" role="tablist">
+                            <li class="nav-item" id="tGizle1">
+                                <a class="nav-link active" data-toggle="pill" role="tab" aria-selected="true"
+                                    href="#tbl1">Sözleşmeye
+                                    İstinaden</a>
+                            </li>
+                            <li class="nav-item" id="tGizle2">
+                                <a class="nav-link" data-toggle="pill" role="tab" aria-selected="false"
+                                    href="#tbl2">Analize
+                                    İstinaden</a>
+                            </li>
+                            <li class="nav-item" id="tGizle3">
+                                <a class="nav-link" data-toggle="pill" role="tab" aria-selected="false"
+                                    href="#tbl3">m<sup>2</sup>
+                                    İstinaden</a>
+                            </li>
+                            <li class="nav-item" id="tGoster">
+                                <a href="#tablolar" class="nav-link" data-toggle="pill" role="tab"
+                                    aria-selected="false">Tümü</a>
+                            </li>
+                        </ul>
+                        <hr>
+                        <!--tablo 1-->
+                        <div class="tab-pane fade show active" role="tabpanel" id="tbl1">
+                            <h3 class="h4 mb-3 mt-3 d-inline-flex border-bottom">Sözleşmeye İstinaden</h3>
+                            <div class="col-lg-12 p-0">
+                                <table class="table table-hover table-bordered w-100">
+                                    <thead>
+                                        <tr class="">
+                                            <th class="pl-3 h5 font-weight-bold" style="width: 20%">Tanım &nbsp;</th>
+                                            <th class="pl-3 h5 font-weight-bold" style="width: 25%">Tutar &nbsp;&#8378;
+                                            </th>
+                                            <th class="pl-3 h5 font-weight-bold" style="width: 15%">Yüzde &nbsp;%</th>
+                                            <th class="pl-3 h5 font-weight-bold" style="width: 20%">m<sup>2</sup>
+                                                &nbsp;&#8378;
+                                            </th>
+                                            <th class="pl-3 h5 font-weight-bold" style="width: 20%">m<sup>2</sup>
+                                                &nbsp;&#36;
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="pl-3 font-weight-bold">İş Bedeli</td>
+                                            <td><input type="text" class="form-control" name="isBedeliSoz"
+                                                    id="isBedeliSoz">
+                                            </td>
+                                            <td><input type="text" class="form-control" value="100" readonly>
+                                            </td>
+                                            <td><input type="text" class="form-control" name="alanTlSoz" id="alanTlSoz"
+                                                    readonly></td>
+                                            <td><input type="text" class="form-control" name="alanDlSoz" id="alanDlSoz"
+                                                    readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pl-3 font-weight-bold">Elektrik Bedeli</td>
+                                            <td><input type="text" class="form-control" name="elkBedelSoz"
+                                                    id="elkBedelSoz" readonly></td>
+                                            <td><input type="text" class="form-control" name="elkYuzdeSoz"
+                                                    id="elkYuzdeSoz" maxlength="2" pattern="[0-9]+"></td>
+                                            <td><input type="text" class="form-control" name="elkAlanTlSoz"
+                                                    id="elkAlanTlSoz" readonly></td>
+                                            <td><input type="text" class="form-control" name="elkAlanDlSoz"
+                                                    id="elkAlanDlSoz" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pl-3 font-weight-bold">Makine Bedeli</td>
+                                            <td><input type="text" class="form-control" name="makBedelSoz"
+                                                    id="makBedelSoz" readonly></td>
+                                            <td><input type="text" class="form-control" name="makYuzdeSoz"
+                                                    id="makYuzdeSoz" maxlength="2" pattern="[0-9]+"></td>
+                                            <td><input type="text" class="form-control" name="makAlanTlSoz"
+                                                    id="makAlanTlSoz" readonly></td>
+                                            <td><input type="text" class="form-control" name="makAlanDlSoz"
+                                                    id="makAlanDlSoz" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pl-3 font-weight-bold">İnşaat Bedeli</td>
+                                            <td><input type="text" class="form-control" name="insBedelSoz"
+                                                    id="insBedelSoz" readonly></td>
+                                            <td><input type="text" class="form-control" name="insYuzdeSoz"
+                                                    id="insYuzdeSoz" maxlength="2" pattern="[0-9]+"></td>
+                                            <td><input type="text" class="form-control" name="insAlanTlSoz"
+                                                    id="insAlanTlSoz" readonly></td>
+                                            <td><input type="text" class="form-control" name="insAlanDlSoz"
+                                                    id="insAlanDlSoz" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" class="form-control font-weight-bold" id="isTanimi1"
+                                                    placeholder="İş Tanımı"></td>
+                                            <td><input type="text" class="form-control" name="isTanimiTutar1"
+                                                    id="isTanimiTutar1" readonly></td>
+                                            <td><input type="text" class="form-control" name="isTanimiYuzde1"
+                                                    id="isTanimiYuzde1" maxlength="2" pattern="[0-9]+"></td>
+                                            <td><input type="text" class="form-control" name="tnmAlanTlSoz1"
+                                                    id="tnmAlanTlSoz1" readonly></td>
+                                            <td><input type="text" class="form-control" name="tnmAlanDlSoz1"
+                                                    id="tnmAlanDlSoz1" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" class="form-control font-weight-bold" id="isTanimi2"
+                                                    placeholder="İş Tanımı"></td>
+                                            <td><input type="text" class="form-control" name="isTanimiTutar2"
+                                                    id="isTanimiTutar2" readonly></td>
+                                            <td><input type="text" class="form-control" name="isTanimiYuzde2"
+                                                    id="isTanimiYuzde2" maxlength="2" pattern="[0-9]+"></td>
+                                            <td><input type="text" class="form-control" name="tnmAlanTlSoz2"
+                                                    id="tnmAlanTlSoz2" readonly></td>
+                                            <td><input type="text" class="form-control" name="tnmAlanDlSoz2"
+                                                    id="tnmAlanDlSoz2" readonly></td>
+                                        </tr>
+                                        <tr class="table-active ">
+                                            <td class="pl-3 h4 font-weight-bold">Toplam</td>
+                                            <td class="pl-3 h4 font-weight-bold"><input type="text" class="form-control"
+                                                    name="tutarToplam" id="tutarToplam" readonly></td>
+                                            <td class="pl-3 h4 font-weight-bold"><input type="text" class="form-control"
+                                                    name="yuzdeToplam" id="yuzdeToplam" readonly maxlength="2"></td>
+                                            <td class="pl-3 h4 font-weight-bold"><input type="text" class="form-control"
+                                                    name="alanTlToplam" id="alanTlToplam" readonly></td>
+                                            <td class="pl-3 h4 font-weight-bold"><input type="text" class="form-control"
+                                                    name="alanDlToplam" id="alanDlToplam" readonly></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--tablo 2-->
+                        <div class="tab-pane fade" role="tabpanel" id="tbl2">
+                            <h3 class="h4 mb-3 mt-3 d-inline-flex border-bottom">Analize İstinaden</h3>
+                            <div class="col-lg-12 p-0">
+                                <table class="table table-hover table-bordered w-100">
+                                    <thead>
+                                        <tr class="">
+                                            <th class="pl-3 h5 font-weight-bold" style="width: 20%">Tanım &nbsp;</th>
+                                            <th class="pl-3 h5 font-weight-bold" style="width: 25%">Tutar &nbsp;&#8378;
+                                            </th>
+                                            <th class="pl-3 h5 font-weight-bold" style="width: 15%">Yüzde &nbsp;%</th>
+                                            <th class="pl-3 h5 font-weight-bold" style="width: 20%">m<sup>2</sup>
+                                                &nbsp;&#8378;
+                                            </th>
+                                            <th class="pl-3 h5 font-weight-bold" style="width: 20%">m<sup>2</sup>
+                                                &nbsp;&#36;
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="pl-3 font-weight-bold">İş Bedeli</td>
+                                            <td><input type="text" class="form-control" name="isBedeliAnlz"
+                                                    id="isBedeliAnlz" readonly></td>
+                                            <td><input type="text" class="form-control" value="100" readonly> </td>
+                                            <td><input type="text" class="form-control" name="alanTlAnlz"
+                                                    id="alanTlAnlz" readonly></td>
+                                            <td><input type="text" class="form-control" name="alanDlAnlz"
+                                                    id="alanDlAnlz" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pl-3 font-weight-bold">Elektrik Bedeli</td>
+                                            <td><input type="text" class="form-control" name="elkBedelAnlz"
+                                                    id="elkBedelAnlz"></td>
+                                            <td><input type="text" class="form-control" maxlength="2" id="elkYuzdeAnlz"
+                                                    readonly></td>
+                                            <td><input type="text" class="form-control" name="elkAlanTlAnlz"
+                                                    id="elkAlanTlAnlz" readonly></td>
+                                            <td><input type="text" class="form-control" name="elkAlanDlAnlz"
+                                                    id="elkAlanDlAnlz" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pl-3 font-weight-bold">Makine Bedeli</td>
+                                            <td><input type="text" class="form-control" name="makBedelAnlz"
+                                                    id="makBedelAnlz" readonly></td>
+                                            <td><input type="text" class="form-control" name="makYuzdeAnlz"
+                                                    id="makYuzdeAnlz" maxlength="2" readonly></td>
+                                            <td><input type="text" class="form-control" name="makAlanTlAnlz"
+                                                    id="makAlanTlAnlz" readonly></td>
+                                            <td><input type="text" class="form-control" name="makAlanDlAnlz"
+                                                    id="makAlanDlAnlz" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pl-3 font-weight-bold">İnşaat Bedeli</td>
+                                            <td><input type="text" class="form-control" name="insBedelAnlz"
+                                                    id="insBedelAnlz" readonly></td>
+                                            <td><input type="text" class="form-control" name="insYuzdeAnlz"
+                                                    id="insYuzdeAnlz" readonly></td>
+                                            <td><input type="text" class="form-control" name="insAlanTlAnlz"
+                                                    id="insAlanTlAnlz" readonly></td>
+                                            <td><input type="text" class="form-control" name="insAlanDlAnlz"
+                                                    id="insAlanDlAnlz" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" class="form-control font-weight-bold" id="anlzTnm1"
+                                                    placeholder="İş Tanımı" readonly></td>
+                                            <td><input type="text" class="form-control" name="isTanimiAnlz1"
+                                                    id="isTanimiAnlz1" readonly></td>
+                                            <td><input type="text" class="form-control" name="isTanimiYuzdeA1"
+                                                    id="isTanimiYuzdeA1" readonly></td>
+                                            <td><input type="text" class="form-control" name="isTanimiYuzdeTlA1"
+                                                    id="isTanimiYuzdeTlA1" readonly></td>
+                                            <td><input type="text" class="form-control" name="isTanimiYuzdeDlA1"
+                                                    id="isTanimiYuzdeDlA1" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" class="form-control font-weight-bold" id="anlzTnm2"
+                                                    placeholder="İş Tanımı" readonly></td>
+                                            <td><input type="text" class="form-control" name="isTanimiAnlz2"
+                                                    id="isTanimiAnlz2" readonly></td>
+                                            <td><input type="text" class="form-control" name="isTanimiYuzdeA2"
+                                                    id="isTanimiYuzdeA2" readonly></td>
+                                            <td><input type="text" class="form-control" name="isTanimiYuzdeTlA2"
+                                                    id="isTanimiYuzdeTlA2" readonly></td>
+                                            <td><input type="text" class="form-control" name="isTanimiYuzdeDlA2"
+                                                    id="isTanimiYuzdeDlA2" readonly></td>
+                                        </tr>
+                                        <tr class="table-active ">
+                                            <td class="pl-3 h4 font-weight-bold">Toplam</td>
+                                            <td class="pl-3 h4 font-weight-bold"><input type="text" class="form-control"
+                                                    name="tutarToplamAnlz" id="tutarToplamAnlz" readonly></td>
+                                            <td class="pl-3 h4 font-weight-bold"><input type="text" class="form-control"
+                                                    name="yuzdeToplamAnlz" id="yuzdeToplamAnlz" readonly></td>
+                                            <td class="pl-3 h4 font-weight-bold"><input type="text" class="form-control"
+                                                    name="alanTlToplamAnlz" id="alanTlToplamAnlz" readonly></td>
+                                            <td class="pl-3 h4 font-weight-bold"><input type="text" class="form-control"
+                                                    name="alanDlToplamAnlz" id="alanDlToplamAnlz" readonly></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--tablo 3-->
+                        <div class="tab-pane fade" role="tabpanel" id="tbl3">
+                            <h3 class="h4 mb-3 mt-3 d-inline-flex border-bottom">İnşaat Alanı İstinaden</h3>
+                            <div class="col-lg-12 p-0">
+                                <table class="table table-hover table-bordered w-100">
+                                    <thead>
+                                        <tr class="">
+                                            <th class="pl-3 h5 font-weight-bold" style="width: 20%">Tanım &nbsp;</th>
+                                            <th class="pl-3 h5 font-weight-bold" style="width: 25%">Tutar &nbsp;&#8378;
+                                            </th>
+                                            <th class="pl-3 h5 font-weight-bold" style="width: 15%">Yüzde &nbsp;%</th>
+                                            <th class="pl-3 h5 font-weight-bold" style="width: 20%">m<sup>2</sup>
+                                                &nbsp;&#8378;
+                                            </th>
+                                            <th class="pl-3 h5 font-weight-bold" style="width: 20%">m<sup>2</sup>
+                                                &nbsp;&#36;
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="pl-3 font-weight-bold">İş Bedeli</td>
+                                            <td><input type="text" class="form-control" name="isBedeliAlan"
+                                                    id="isBedeliAlan" readonly></td>
+                                            <td><input type="text" class="form-control" value="100" readonly>
+                                            </td>
+                                            <td><input type="text" class="form-control" name="alanTlAlan"
+                                                    id="alanTlAlan">
+                                            </td>
+                                            <td><input type="text" class="form-control" name="alanDlAlan"
+                                                    id="alanDlAlan" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pl-3 font-weight-bold">Elektrik Bedeli</td>
+                                            <td><input type="text" class="form-control" name="elkBedelAlan"
+                                                    id="elkBedelAlan" readonly></td>
+                                            <td><input type="text" class="form-control" id="elkYuzdeAlan" readonly></td>
+                                            <td><input type="text" class="form-control" name="elkAlanTlAlan"
+                                                    id="elkAlanTlAlan" readonly></td>
+                                            <td><input type="text" class="form-control" name="elkAlanDlAlan"
+                                                    id="elkAlanDlAlan" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pl-3 font-weight-bold">Makine Bedeli</td>
+                                            <td><input type="text" class="form-control" name="makBedelAlan"
+                                                    id="makBedelAlan" readonly></td>
+                                            <td><input type="text" class="form-control" name="makYuzdeAlan"
+                                                    id="makYuzdeAlan" readonly></td>
+                                            <td><input type="text" class="form-control" name="makAlanTlAlan"
+                                                    id="makAlanTlAlan" readonly></td>
+                                            <td><input type="text" class="form-control" name="makAlanDlAlan"
+                                                    id="makAlanDlAlan" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pl-3 font-weight-bold">İnşaat Bedeli</td>
+                                            <td><input type="text" class="form-control" name="insBedelAlan"
+                                                    id="insBedelAlan" readonly></td>
+                                            <td><input type="text" class="form-control" name="insYuzdeAlan"
+                                                    id="insYuzdeAlan" readonly></td>
+                                            <td><input type="text" class="form-control" name="insAlanTlAlan"
+                                                    id="insAlanTlAlan" readonly></td>
+                                            <td><input type="text" class="form-control" name="insAlanDlAlan"
+                                                    id="insAlanDlAlan" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" class="form-control font-weight-bold" id="alanTnm1"
+                                                    readonly placeholder="İş Tanımı"></td>
+                                            <td><input type="text" class="form-control" name="isTanimiTutar1Alan"
+                                                    id="isTanimiTutar1Alan" readonly></td>
+                                            <td><input type="text" class="form-control" name="isTanimiYuzdeAA1"
+                                                    id="isTanimiYuzdeAA1" readonly></td>
+                                            <td><input type="text" class="form-control" name="isTanimiTl1Alan"
+                                                    id="isTanimiTl1Alan" readonly></td>
+                                            <td><input type="text" class="form-control" name="isTanimiDl1Alan"
+                                                    id="isTanimiDl1Alan" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" class="form-control font-weight-bold" id="alanTnm2"
+                                                    readonly placeholder="İş Tanımı"></td>
+                                            <td><input type="text" class="form-control" name="isTanimiTutar2Alan"
+                                                    id="isTanimiTutar2Alan" readonly></td>
+                                            <td><input type="text" class="form-control" name="isTanimiYuzdeAA2"
+                                                    id="isTanimiYuzdeAA2" readonly></td>
+                                            <td><input type="text" class="form-control" name="isTanimiTl2Alan"
+                                                    id="isTanimiTl2Alan" readonly></td>
+                                            <td><input type="text" class="form-control" name="isTanimiDl2Alan"
+                                                    id="isTanimiDl2Alan" readonly></td>
+                                        </tr>
+                                        <tr class="table-active ">
+                                            <td class="pl-3 h4 font-weight-bold">Toplam</td>
+                                            <td class="pl-3 h4 font-weight-bold"><input type="text" class="form-control"
+                                                    name="tutarToplamAlan" id="tutarToplamAlan" readonly></td>
+                                            <td class="pl-3 h4 font-weight-bold"><input type="text" class="form-control"
+                                                    name="yuzdeToplamAlan" id="yuzdeToplamAlan" readonly></td>
+                                            <td class="pl-3 h4 font-weight-bold"><input type="text" class="form-control"
+                                                    name="alanTlToplamAlan" id="alanTlToplamAlan" readonly></td>
+                                            <td class="pl-3 h4 font-weight-bold"><input type="text" class="form-control"
+                                                    name="alanDlToplamAlan" id="alanDlToplamAlan" readonly></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--Kısım 3-->
+
+                        <!--Kısım 4-->
+                    </div>
+                </div>
+                <div class="col-lg-1">
+                    <!--boş-->
+                    <div id="farkMaliyet" class="position-fixed mr-2 mb-2 sticky-top">
+                        <table class="table table-sm table-bordered table-info text-secondary" id="farkMaliyetTbl">
+                            <thead>
+                                <tr>
+                                    <th>Fark - Maliyet Hesaplama</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" class="form-control" id="" placeholder="Maliyet"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" readonly id="" placeholder="Fark"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" readonly id=""
+                                            placeholder="Fiyat Kırma %"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="d-block p-1 pb-2">İnşaat Alanı</span>
+                                        <input type="text" class="form-control" id="isAlanGoster" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="d-block p-1 pb-2">Teslim Tarihi</span>
+                                        <input type="text" class="form-control" readonly id="teslimTarihGoster">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="col-lg-12 text-right m-0 p-0">
+                            <button class="btn btn-info btn-sm" id="mGizleG">Maliyet</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pb-3">
+                <div class="col-12 text-center">
+                    <button type="button" id="BtnOnizleme" class="btn btn-primary d-none" data-toggle="modal"
+                        data-target=".bd-example-modal-lg">Önizleme</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalBaslik">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="detay">
+                        <table class="table ">
+                            <thead>
+                                <tr>
+                                    <th scope="col">İş Veren</th>
+                                    <th scope="col">İnşaat Alanı</th>
+                                    <th scope="col">İş Başlama Tarihi</th>
+                                    <th scope="col">İş Süresi</th>
+                                    <th scope="col">İş Bitirme Tarihi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>--</th>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="sozlesmeCc">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="h5">Sözleşmeye İstinaden</span>
+                    <br>
+                    <div id="TblSoz" class="d-none">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Tanım</th>
+                                    <th scope="col">Tutar</th>
+                                    <th scope="col">Yüzde</th>
+                                    <th scope="col">Alan m<sup>2</sup>(₺)</th>
+                                    <th scope="col">Alan m<sup>2</sup>($)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">İş Bedeli</th>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Elektrik Bedeli</th>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Makine Bedeli</th>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">İnşaat Bedeli</th>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Tanımsız İş 1</th>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Tanımsız İş 2</th>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox" id="analizCc">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="h5">Analize İstinaden</span>
+                    <br>
+                    <div id="TblAnlz" class="d-none">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Tanım</th>
+                                    <th scope="col">Tutar</th>
+                                    <th scope="col">Yüzde</th>
+                                    <th scope="col">Alan m<sup>2</sup>(₺)</th>
+                                    <th scope="col">Alan m<sup>2</sup>($)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">İş Bedeli</th>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Elektrik Bedeli</th>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Makine Bedeli</th>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">İnşaat Bedeli</th>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Tanımsız İş 1</th>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Tanımsız İş 2</th>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="alanCc">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="h5">İnşaat Alanına İstinaden</span>
+                    <br>
+                    <div id="TblAlan" class="d-none">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Tanım</th>
+                                    <th scope="col">Tutar</th>
+                                    <th scope="col">Yüzde</th>
+                                    <th scope="col">Alan m<sup>2</sup>(₺)</th>
+                                    <th scope="col">Alan m<sup>2</sup>($)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">İş Bedeli</th>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Elektrik Bedeli</th>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Makine Bedeli</th>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">İnşaat Bedeli</th>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Tanımsız İş 1</th>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Tanımsız İş 2</th>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info">Yazdır</button>
+                    <button type="button" class="btn btn-success">Excel Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="p-2 bg-dark text-light text-center h6 m-0 w-100 ">
+        <p class="m-0 p-2"><b>Copyright</b> © 2019 Duksa </p>
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.maskMoney.js"></script>
+    <script src="js/islem.js"></script>
+    <!--JQuery-->
+    <script>
+        $(document).ready(function () {
+
+            $("#farkMaliyetTbl").hide();
+            $("#tablolar").hide();
+            $("#mGizleG").click(function (e) {
+                $("#farkMaliyetTbl").toggle();
+            });
+
+            $("#tGoster").click(function (e) {
+                $("#tbl1").addClass("active show");
+                $("#tbl2").addClass("active show");
+                $("#tbl3").addClass("active show");
+            });
+
+            $("#tGizle1").click(function (e) {
+                $("#tbl2").removeClass("active show");
+                $("#tbl3").removeClass("active show");
+            });
+
+            $("#tGizle2").click(function (e) {
+                $("#tbl1").removeClass("active show");
+                $("#tbl3").removeClass("active show");
+            });
+
+            $("#tGizle3").click(function (e) {
+                $("#tbl1").removeClass("active show");
+                $("#tbl2").removeClass("active show");
+            });
+
+            $(document).on("scroll", function () {
+                if ($(document).scrollTop() > 75) {
+                    $("#farkMaliyet").css("top", "10px");
+                }
+                if ($(document).scrollTop() < 75) {
+                    $("#farkMaliyet").css("top", "88px");
+                }
+
+            });
+
+            $("#notEkle").click(function () {
+                $("#notlarDiv").append(
+                    "<div class='notTut'><div class='row'><div class='col-md-12 mb-3 mt-3'><p>Not :</p><textarea class='form-control notTutTxt' rows='3'></textarea></div></div></div>"
+                );
+            });
+
+            $('#sozlesmeCc').change(function () {
+                //this.checked = true;
+                if (this.checked == true) {
+                    $("#TblSoz").removeClass("d-none");
+                    //alert("sozlesmeCc açıldı");
+                } else {
+                    $("#TblSoz").addClass("d-none");
+                    //alert("sozlesmeCc kapandı");
+                }
+            });
+            $('#analizCc').change(function () {
+                //this.checked = true;
+                if (this.checked == true) {
+                    //alert("analizCc açıldı");
+                    $("#TblAnlz").removeClass("d-none");
+                } else {
+                    //alert("analizCc kapandı");
+                    $("#TblAnlz").addClass("d-none");
+                }
+            });
+            $('#alanCc').change(function () {
+                //this.checked = true;
+                if (this.checked == true) {
+                    //alert("alanCc açıldı");
+                    $("#TblAlan").removeClass("d-none");
+                } else {
+                    //alert("alanCc kapandı");
+                    $("#TblAlan").addClass("d-none");
+                }
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body onload="resYen()">
+    <div class="ortla" style="padding: 100px; width: 50%;">
+        <canvas id="tuval" width="100" height="30" style="border:1px solid;"></canvas><br>
+        <button id="btnYenile" onclick="resYen()" style="height: 30px; width: 100px;">Yenile</button>
+        <br><br>
+        <input type="text" name="sifreGir" id="sifreGir" maxlength="5"><br>
+        <button id="dogrula" onclick="dogrulama()">Doğrula</button>
+    </div>
+
+    <script>
+        var canvas = document.getElementById("tuval");
+        var ctx = canvas.getContext("2d");
+        var harfler = new Array("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q",
+            "r", "s", "t", "u", "v", "w", "x", "y", "z");
+        var sayilar = new Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+        var sfr;
+
+        function resYen() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var sifre = "";
+            sfr = "";
+            for (let i = 0; i < 5; i++) {
+                var d = Math.floor(Math.random() * 3);
+                var tmp;
+                if (d == 1) {
+                    tmp = harfler[Math.floor(Math.random() * harfler.length)];
+                } else if (d == 0) {
+                    tmp = sayilar[Math.floor(Math.random() * sayilar.length)];
+                } else {
+                    tmp = harfler[Math.floor(Math.random() * harfler.length)].toUpperCase();
+                }
+                sifre += tmp + " ";
+                sfr += tmp;
+            }
+            ctx.textAlign = "center";
+            ctx.font = "18px Arial";
+            ctx.fillStyle = "darkblue";
+            ctx.fillText(sifre, 50, 20);
+            cizCiz();
+            nokCiz();
+        }
+
+        function cizCiz() {
+            ctx.beginPath();
+            ctx.moveTo(Math.floor(Math.random() * 20), Math.floor(Math.random() * 5));
+            ctx.lineTo(Math.floor(Math.random() * 200 + 100), Math.floor(Math.random() * 20 + 50));
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(Math.floor(Math.random() * 20 + 20), Math.floor(Math.random() * 10 + 20));
+            ctx.lineTo(Math.floor(Math.random() * 100), Math.floor(Math.random() * 5));
+            ctx.stroke();
+        }
+
+        function nokCiz() {
+            var r = Math.floor(Math.random() * 10 + 3);
+            for (let j = 0; j <= r; j++) {
+
+                ctx.beginPath();
+                ctx.arc(Math.floor(Math.random() * 100), Math.floor(Math.random() * 20), 1, 0, 2 * Math.PI, false);
+                ctx.fillStyle = "black";
+                ctx.fill();
+            }
+        }
+
+        function dogrulama() {
+            var kod = document.getElementById("sifreGir");
+            if (kod.value === sfr) {
+                document.write("Hoşgeldiniz....");
+            } else {
+                alert("Şifre Yanlış");
+                kod.value = "";
+                resYen();
+
+            }
+        }
+    </script>
+</body>
+
+</html>

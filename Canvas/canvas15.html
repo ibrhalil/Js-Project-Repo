@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>translate</title>
+</head>
+
+<body>
+    <canvas id="tuval" width="8000" height="4000"></canvas>
+    <script>
+        var canvas = document.getElementById("tuval");
+        var ct = canvas.getContext("2d");
+
+        ct.beginPath();
+        ct.rect(10, 10, 200, 100);
+        ct.fillStyle = "#89c152";
+        ct.fill();
+
+        //1 - değişim
+        ct.translate(300, 200); //canvas içindeki x ve ye koordinatlarının başlangıç yerlerini değiştirmiş olduk
+
+        ct.beginPath(); //yukarda oluşturmuş olduğumuz dikdörtgen ile aynı olmasına rağmen farklı koordinatlarda oluştu 
+        ct.rect(10, 10, 200, 100);
+        ct.fillStyle = "#89c152";
+        ct.fill();
+
+        //2 - değişim
+        ct.translate(300, 0); //bi önceki yeni canvas koordinatlarına x ekseninde ekleme yaptı    
+
+        ct.beginPath();
+        ct.rect(10, 10, 200, 100);
+        ct.fillStyle = "#8fd0c2";
+        ct.fill();
+
+        //3 - değişim
+        ct.translate(-300, -200); //bi önceki yeni canvas koordinatlarına x ekseninde ekleme yaptı    
+
+        ct.beginPath();
+        ct.rect(10, 10, 200, 100);
+        ct.fillStyle = "#ffd0c2";
+        ct.fill();
+
+        /*
+            bütün kutuların koordinatları aynıdır.!!
+        */
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="tuval" width="700" height="500" ></canvas>
+    <script>
+        var canvas = document.getElementById("tuval");
+        var ctx = canvas.getContext("2d");
+
+        var rgd = ctx.createRadialGradient(60,60,10,60,60,50);  //dairesel bir renk geçişi sağlağlıyor
+        //  koordinat sistemi canvas içeriğine baz alarak şekilleniyor yani şekil odaklı değil 
+        rgd.addColorStop(0,"#f5c");
+        rgd.addColorStop(1,"#0fc");
+
+        ctx.rect(10,10,100,100);
+        ctx.fillStyle=rgd;
+        ctx.fill();
+
+    </script>
+</body>
+</html>

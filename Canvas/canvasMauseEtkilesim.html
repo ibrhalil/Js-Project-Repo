@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="tuval" width="800" height="600" style="border: 1px solid;"></canvas>
+    <script>
+        var canvas = document.getElementById("tuval");
+        var con = canvas.getContext("2d");
+        var renkler = new Array("#55efc4", "#81ecec", "#74b9ff", "#a29bfe", "#6c5ce7", "#ffeaa7", "#fab1a0", "#fd79a8",
+            "#ff7675", "#d63031", "#e84393", "#574b90");
+        function tiklaCiz(e)
+        {
+            var boyut = Math.floor((Math.random()*70)+30);
+            con.beginPath();
+            con.arc(e.x-10,e.y-10,boyut,2*Math.PI,false);
+            con.strokeStyle=renkler[Math.floor(Math.random() * (renkler.length))];
+            con.lineWidth=5;
+            con.stroke();
+        }
+        function tiklaCiz2(e)
+        {
+            con.beginPath();
+            con.arc(e.x-10,e.y-10,2,2*Math.PI,false);
+            con.fill();
+        }
+        canvas.addEventListener("click",tiklaCiz);
+        canvas.addEventListener("mousemove",tiklaCiz2);
+
+    </script>
+</body>
+</html>

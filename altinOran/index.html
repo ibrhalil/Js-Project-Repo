@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="degerAl" id="degerAl">
+    <button id="btn">Hesapla</button>
+    <br>
+    <canvas id="canvas" width="1000" height="800" style="border:1px solid #000000; overflow: scroll;">
+        Your browser does not support the HTML5 canvas tag.
+    </canvas>
+    <script>
+        var btnTiklama = document.getElementById("btn");
+        var txtMetin = document.getElementById("degerAl");
+        var eksenX;
+        var eksenY;
+
+        btnTiklama.onclick = function () {
+            var katSay = 20;
+            var deger = parseInt(txtMetin.value);
+            btnTiklama.style.display = "none";
+            txtMetin.style.display = "none";
+
+            var canvas = document.getElementById('canvas');
+            var cizim = canvas.getContext('2d');
+            cizim.scale(1, 1);
+
+            if (deger == 1) {
+                eksenX = katSay;
+                eksenY = katSay;
+            } else if (deger == 2 || deger == 3) {
+                eksenX = fibonacci(deger) * katSay + katSay;
+                eksenY = katSay;
+            } else if (deger == 4) {
+                eksenX = fibonacci(deger) * katSay - katSay * 2;
+                eksenY = katSay;
+            } else if (deger == 5) {
+                eksenY = fibonacci(deger) * katSay + katSay;
+                eksenX = fibonacci(deger - 1) * katSay - katSay * 2;
+            } else if (deger == 6) {
+                eksenX = fibonacci(deger) * katSay + katSay * 3;
+                eksenY = fibonacci(deger) * katSay - katSay * 3;
+            } else if (deger == 7) {
+                eksenY = fibonacci(deger - 1) * katSay;
+                eksenX = fibonacci(deger) * katSay - katSay * 2;
+            } else if (deger > 8 || deger < 11) {
+                eksenX = fibonacci(deger - 1) * katSay;
+                eksenY = fibonacci(deger - 2) * katSay;
+                cizim.scale(.5, .5);
+            } else if (deger > 10) {
+                eksenX =(deger) ;
+                eksenY = (deger) ;
+                cizim.scale((1 / deger), (1 / deger));
+            }
+
+
+            var kutuW;
+            var kutuH;
+            var say = 1;
+
+
+            cizim.clearRect(0, 0, 1000, 800);
+            for (let i = 1; i <= deger; i++) {
+                cizim.beginPath();
+                //(yatay, dikey,genişlik,yükseklik)
+                kutuH = fibonacci(i) * katSay;
+                kutuW = fibonacci(i) * katSay;
+                cizim.rect(eksenX, eksenY, kutuW, kutuH);
+                var rr = "#" + Math.floor(Math.random() * 9) + "" + Math.floor(Math.random() * 9) + "" + Math.floor(
+                    Math.random() * 9);
+                cizim.fillStyle = rr;
+                cizim.fill();
+                console.log("deger:" + i + " F:" + fibonacci(i) + " X:" + eksenX + " Y:" + eksenY + " W:" + kutuW +
+                    " H:" + kutuH);
+                if (say == 1) {
+                    eksenX -= fibonacci(i + 1) * katSay;
+                } else if (say == 2) {
+                    eksenY += fibonacci((i)) * katSay;
+                } else if (say == 3) {
+                    eksenX += fibonacci((i)) * katSay;
+                    eksenY -= fibonacci((i - 1)) * katSay;
+                } else if (say == 4) {
+                    //eksenX -= fibonacci((i - 2))*katSay+((fibonacci(i))*katSay);
+                    eksenX -= fibonacci((i - 1)) * katSay;
+                    eksenY -= fibonacci(i + 1) * katSay;
+                    say = 0;
+                }
+                say++;
+            }
+        }
+    </script>
+    <script>
+
+    </script>
+    <script>
+        function fibonacci(num) {
+            if (num <= 0) {
+                return 1;
+            }
+            var a = 1,
+                b = 0,
+                temp;
+
+            while (num >= 0) {
+                temp = a;
+                a = a + b;
+                b = temp;
+                num--;
+            }
+
+            return b;
+        }
+    </script>
+</body>
+
+</html>

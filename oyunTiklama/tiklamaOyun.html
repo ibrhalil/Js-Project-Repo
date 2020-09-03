@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body class="text-center">
+  <button type="button" id="basla" class="btn btn-primary my-3">Oyuna Başla</button>
+  <div id="oyunAlani">
+    <div id='kutu'></div>
+  </div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  <script>
+    var yerX = 0;
+    var yerY = 0;
+    var boyutX = 0;
+    var boyutY = 0;
+    var ekranBoyutX = 0;
+    var ekranBoyutY = 0;
+    $(function () {
+      $("#basla").click(function () {
+        $(this).hide();
+        ekranBoyutY = $(window).height();
+        ekranBoyutX = $(window).width();
+        $("#oyunAlani").height($(window).height());
+        $("#oyunAlani").width($(window).width());
+        $("#oyunAlani").css("background", "pink");
+        //$("#oyunAlani").html("<div id='kutu'></div>");
+        boyutX = Math.floor(Math.random() * (ekranBoyutX - 50) + 10);
+        boyutY = Math.floor(Math.random() * (ekranBoyutY - 50) + 10);
+        yerX = Math.floor(Math.random() * (ekranBoyutX - boyutX) + 10);
+        yerY = Math.floor(Math.random() * (ekranBoyutY - boyutY) + 10);
+        $("#kutu").height(boyutY);
+        $("#kutu").width(boyutX);
+        $("#kutu").css("position", "absolute");
+        $("#kutu").css("margin-left", yerX);
+        $("#kutu").css("margin-top", yerY);
+        $("#kutu").css("background", "yellow");
+
+      });
+
+      $("#kutu").click(function () {
+        if (boyutX > 20) {
+          boyutX -= 20;
+        }
+
+        if (boyutY > 20) {
+          boyutY -= 20;
+        }
+
+        do {
+          boyutX = Math.floor(Math.random() * (boyutX));
+        }
+        while (boyutX <= 10);
+
+        do {
+          boyutY = Math.floor(Math.random() * (boyutY));
+        }
+        while (boyutY <= 10);
+
+        do {
+          yerX = Math.floor(Math.random() * (ekranBoyutX - boyutX));
+        }
+        while (yerX <= 10);
+
+        do {
+          yerY = Math.floor(Math.random() * (ekranBoyutY - boyutY));
+        }
+        while (yerY <= 10);
+
+        $("#kutu").height(boyutY);
+        $("#kutu").width(boyutX);
+        $("#kutu").css("margin-left", yerX);
+        $("#kutu").css("margin-top", yerY);
+      });
+
+    });
+  </script>
+</body>
+
+</html>

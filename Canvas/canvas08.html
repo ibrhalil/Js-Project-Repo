@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Yay Çizme</title>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <th>
+            <td>
+                Yay Çizme
+            </td>
+            </th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    X Koordinatı :
+                </td>
+                <td>
+                    <input type="range" onchange="yayCiz()" name="eksenX" id="eksenX">
+                </td>
+                <td>
+                    <label id="yazX"></label>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Y Koordinatı :
+                </td>
+                <td>
+                    <input type="range" onchange="yayCiz()" name="eksenY" id="eksenY">
+                </td>
+                <td>
+                    <label id="yazY"></label>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Yay Büyüklüğü :
+                </td>
+                <td>
+                    <input type="range" onchange="yayCiz()" name="radius" id="radius">
+                </td>
+                <td>
+                    <label id="yazR"></label>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Başlama Açısı :
+                </td>
+                <td>
+                    <input type="range" onchange="yayCiz()" name="BaslamaA" id="BaslamaA">
+                </td>
+                <td>
+                    <label id="yazAciBas"></label>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Bitiş Açısı :
+                </td>
+                <td>
+                    <input type="range" onchange="yayCiz()" name="BitisA" id="BitisA">
+                </td>
+                <td>
+                    <label id="yazAciSon"></label>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <canvas id="tuval" width="600" height="600"></canvas>
+    <script>
+        var canvas = document.getElementById("tuval");
+        var ctx = canvas.getContext("2d");
+
+        var kordinatX = document.getElementById("eksenX");
+        var kordinatY = document.getElementById("eksenY");
+        var radius = document.getElementById("radius");
+        var BaslamaA = document.getElementById("BaslamaA");
+        var BitisA = document.getElementById("BitisA");
+
+        var yeksenX = document.getElementById("yazX");
+        var yeksenY = document.getElementById("yazY");
+        var yradius = document.getElementById("yazR");
+        var yaciBa = document.getElementById("yazAciBas");
+        var yAciSo = document.getElementById("yazAciSon");
+
+        kordinatX.min = 100;
+        kordinatX.max = 400;
+        kordinatX.value = 200;
+
+        kordinatY.min = 100;
+        kordinatY.max = 400;
+        kordinatY.value = 200;
+
+        radius.min = 5;
+        radius.max = 100;
+        radius.value = 20;
+
+        BaslamaA.min = 0;
+        BaslamaA.max = 6;
+        BaslamaA.value = 5;
+
+        BitisA.min = 0;
+        BitisA.max = 7;
+        BitisA.value = 0;
+
+        function yayCiz() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.beginPath();
+            ctx.arc(kordinatX.value, kordinatY.value, radius.value, BaslamaA.value, BitisA.value, false);
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            yeksenX.innerHTML=kordinatX.value;
+            yeksenY.innerHTML=kordinatY.value;
+            yradius.innerHTML=radius.value;
+            yaciBa.innerHTML=BaslamaA.value;
+            yAciSo.innerHTML=BitisA.value;
+
+        }
+    </script>
+</body>
+
+</html>
